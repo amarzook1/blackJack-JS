@@ -2,8 +2,6 @@
 //Blackjack
 //by Ahmed Marzook
 //FEATURES TO ADD:
-//Looking for a Tie
-//if the dealer hits 5 cards won automatically
 //
 
 //Card Variables
@@ -22,6 +20,7 @@ let stayButton = document.getElementById('stay-button');
 let gameStarted =false,
     gameOver = false,
     playerWon = false,
+    playerDraw = false,
     dealerCards = [],
     playerCards = [],
     deck = [],
@@ -194,6 +193,9 @@ function showStatus() {
     if (playerWon) {
       textArea.innerText += "YOU WIN!";
     }
+    else if(playerDraw){
+      textArea.innerText += "YOU DRAW!";
+    } 
     else {
       textArea.innerText += "DEALER WINS";
     }
@@ -230,8 +232,11 @@ function checkForEndOfGame() {
   }
   //if game over check to see if the dealer or player won and who has the higher score
   else if (gameOver) {
-    
-    if (playerScore > dealerScore) {
+    if(playerScore === dealerScore){
+      playerDraw = true;
+      playerWon = false;
+    }
+    else if (playerScore > dealerScore) {
       playerWon = true;
     }
     else {
