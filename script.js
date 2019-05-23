@@ -232,12 +232,13 @@ function checkForEndOfGame() {
   }
   //if game over check to see if the dealer or player won and who has the higher score
   else if (gameOver) {
-    if(playerScore === dealerScore){
+    if(playerScore > dealerScore){
+      playerDraw = false;
+      playerWon = true;
+    }
+    else if (playerScore === dealerScore) {
       playerDraw = true;
       playerWon = false;
-    }
-    else if (playerScore > dealerScore) {
-      playerWon = true;
     }
     else {
       playerWon = false;
